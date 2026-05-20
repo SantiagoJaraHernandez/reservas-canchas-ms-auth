@@ -1,0 +1,23 @@
+services:
+  ms-auth:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    image: reservas-ms-auth:dev
+    container_name: reservas-dev-ms-auth
+    restart: unless-stopped
+    environment:
+      SERVER_PORT: 8082
+      MONGODB_URI: mongodb://reservas-dev-mongodb:27017/authdb_dev
+      JWT_SECRET: dev_jwt_secret_key_reservas_2026_12345
+    ports:
+      - "8082:8082"
+    networks:
+      reservas-dev-net:
+        aliases:
+          - ms-auth
+
+networks:
+  reservas-dev-net:
+    external: true
+    name: reservas-dev-net
