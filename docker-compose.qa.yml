@@ -1,0 +1,23 @@
+services:
+  ms-auth:
+    build:
+      context: .
+      dockerfile: Dockerfile.qa
+    image: reservas-ms-auth:qa
+    container_name: reservas-qa-ms-auth
+    restart: unless-stopped
+    environment:
+      SERVER_PORT: 8082
+      MONGODB_URI: mongodb://reservas-qa-mongodb:27017/authdb_qa
+      JWT_SECRET: qa_jwt_secret_key_reservas_2026_12345
+    ports:
+      - "8182:8082"
+    networks:
+      reservas-qa-net:
+        aliases:
+          - ms-auth
+
+networks:
+  reservas-qa-net:
+    external: true
+    name: reservas-qa-net
