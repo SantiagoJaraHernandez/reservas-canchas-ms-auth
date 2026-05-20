@@ -29,6 +29,7 @@ public class AuthService {
         }
 
         User user = new User();
+        user.setNombre(request.getNombre());
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setRol("USER");
@@ -45,6 +46,7 @@ public class AuthService {
         }
 
         User user = new User();
+        user.setNombre(request.getNombre());
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setRol("ADMIN");
